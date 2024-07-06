@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:registrationpage/Controllers/LoginController.dart';
+import 'package:registrationpage/Routes/AppRoute.dart';
 
 
 
-class Registration extends StatefulWidget {
-
-
-  const Registration({super.key});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-
-  @override
-  State<Registration> createState() => _RegistrationState();
-}
-
-class _RegistrationState extends State<Registration> {
+class Login extends GetView<LoginController> {
 
 
 
@@ -42,7 +26,7 @@ class _RegistrationState extends State<Registration> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Center(child: Text("Registration")),
+        title: Center(child: Text("Login")),
       ),
       body: Expanded(
         child: SingleChildScrollView(
@@ -69,25 +53,12 @@ class _RegistrationState extends State<Registration> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Name"),
-                  TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder()
-                    ),
-                  ),
-                  SizedBox(height: 10,),
                   Text("Email"),
                   TextField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text("Phone"),
-                  TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder()
-                    ),
+                    controller: controller.email,
                   ),
                   SizedBox(height: 10,),
                   Text("Password"),
@@ -96,22 +67,25 @@ class _RegistrationState extends State<Registration> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
+                    controller: controller.password,
                   ),
                   SizedBox(height: 10,),
                   Center(
                     child: ElevatedButton(
                         onPressed: (){
-
+                            print("clicked!!!");
+                            print(controller.email.value.text);
+                            print(controller.password.value.text);
                         },
-                        child: Text("Register")
+                        child: Text("Login")
                     ),
                   ),
                   Center(
                     child: ElevatedButton(
                         onPressed: (){
-                          Get.back();
+                            Get.toNamed(AppRoute.register);
                         },
-                        child: Text("Back")
+                        child: Text("Register")
                     ),
                   )
 
