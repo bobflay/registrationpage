@@ -37,8 +37,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: AppRoute.login,
-      getPages: AppPage.pages,
-      home: Login(),
+      getPages: AppPage.pages
     );
   }
 }
