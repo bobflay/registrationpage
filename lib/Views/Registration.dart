@@ -57,6 +57,7 @@ class Registration extends GetView<RegistrationController> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
+                    controller: controller.name,
                   ),
                   SizedBox(height: 10,),
                   Text("Email"),
@@ -64,6 +65,7 @@ class Registration extends GetView<RegistrationController> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
+                    controller: controller.email,
                   ),
                   SizedBox(height: 10,),
                   Text("Phone"),
@@ -71,6 +73,7 @@ class Registration extends GetView<RegistrationController> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
+                    controller: controller.phone,
                   ),
                   SizedBox(height: 10,),
                   Text("Password"),
@@ -79,12 +82,13 @@ class Registration extends GetView<RegistrationController> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder()
                     ),
+                    controller: controller.password,
                   ),
                   SizedBox(height: 10,),
                   Center(
                     child: ElevatedButton(
                         onPressed: (){
-
+                          controller.register();
                         },
                         child: Text("Register")
                     ),
