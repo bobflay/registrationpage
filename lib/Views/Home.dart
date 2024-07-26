@@ -7,12 +7,11 @@ import 'package:registrationpage/Routes/AppRoute.dart';
 
 
 
-class Home extends GetView<HomeController> {
-
-
+class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.put(HomeController());
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -46,6 +45,19 @@ class Home extends GetView<HomeController> {
               ),
             ),
           ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.purple,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            ElevatedButton(
+                onPressed: (){
+                  controller.logout();
+                },
+                child: Text("Logout!")),
+          ],
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
