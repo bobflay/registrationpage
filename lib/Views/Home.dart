@@ -18,49 +18,47 @@ class Home extends StatelessWidget {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Center(child: Text("Home")),
-      ),
-      body: Expanded(
-        child: SingleChildScrollView(
-          child: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: Padding(
-              padding: const EdgeInsets.all(
-                  16.0),
+    return GetX<HomeController>(
+        builder: (_){
+          return  Scaffold(
+            appBar: AppBar(
+              // TRY THIS: Try changing the color here to a specific color (to
+              // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+              // change color while the other colors stay the same.
+              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              // Here we take the value from the MyHomePage object that was created by
+              // the App.build method, and use it to set our appbar title.
+              title: Center(child: Text("Home")),
+            ),
+            body: ListView.builder(
+                itemCount: controller.songs.length,
+                itemBuilder: (context,index){
+                  var music = controller.songs[index];
+                  return Card(
+                    child: ListTile(
+                      leading: Image.network(music.coverPhoto),
+                      title: Text(music.title),
+                      subtitle: Text("${music.artist} . ${music.views}"),
+                    ),
+                  );
+                }
+            ),
+            drawer: Drawer(
+              backgroundColor: Colors.purple,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+                        controller.logout();
+                      },
+                      child: Text("Logout!")),
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-      drawer: Drawer(
-        backgroundColor: Colors.purple,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            ElevatedButton(
-                onPressed: (){
-                  controller.logout();
-                },
-                child: Text("Logout!")),
-          ],
-        ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+            // This trailing comma makes auto-formatting nicer for build methods.
+          );
+        }
     );
   }
 }
